@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Game</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #e60000;
+        }
+
+        p {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #e60000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Valentine's Day Quiz</h1>
+    <p>Answer a few questions about us and receive a special message!</p>
+    <button onclick="startQuiz()">Start Quiz</button>
+    <div id="quiz" style="display: none;">
+        <h2>Question 1</h2>
+        <p>What's your favorite memory of us?</p>
+        <input type="text" id="q1">
+        <h2>Question 2</h2>
+        <p>What's something you love most about me?</p>
+        <input type="text" id="q2">
+        <h2>Question 3</h2>
+        <p>Where do you see us in the future?</p>
+        <input type="text" id="q3">
+        <button onclick="showMessage()">Show Message</button>
+    </div>
+    <p id="result"></p>
+
+    <script>
+        function startQuiz() {
+            document.getElementById('quiz').style.display = 'block';
+        }
+
+        function showMessage() {
+            const q1 = document.getElementById('q1').value.trim();
+            const q2 = document.getElementById('q2').value.trim();
+            const q3 = document.getElementById('q3').value.trim();
+
+            let message = "I am so grateful for our journey together. ";
+            message += "Your favorite memory: '" + q1 + "', ";
+            message += "the thing you love most about me: '" + q2 + "', ";
+            message += "and where you see us in the future: '" + q3 + "'. ";
+
+            if (q3.toLowerCase().includes('yes') || q3.toLowerCase().includes('forever')) {
+                message += "I'm overjoyed to spend forever with you. ";
+                message += "See you in Sale on 10/02/2024. ";
+            } else {
+                message += "I can't wait to continue creating beautiful memories with you. ";
+            }
+
+            message += "Happy Valentine's Day, my love! ❤️";
+
+            document.getElementById('result').innerText = message;
+        }
+    </script>
+</body>
+</html>
