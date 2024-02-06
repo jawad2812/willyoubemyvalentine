@@ -27,16 +27,30 @@
             border: none;
             cursor: pointer;
         }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <h1>Will You Be My Valentine?</h1>
     <p>Click the button to reveal a surprise!</p>
-    <button onclick="revealSurprise()">Click Me!</button>
+    <button onclick="playGame()">Click Me!</button>
+    <p id="result"></p>
 
     <script>
-        function revealSurprise() {
-            alert("Happy Valentine's Day! 🌹");
+        function playGame() {
+            const randomNumber = Math.floor(Math.random() * 2);
+            const resultElement = document.getElementById('result');
+
+            if (randomNumber === 0) {
+                resultElement.innerText = "Yes, I'd love to be your Valentine! ❤️";
+            } else {
+                resultElement.innerText = "I'm sorry, but I can't be your Valentine this time. 😔";
+            }
         }
     </script>
 </body>
