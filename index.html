@@ -6,9 +6,29 @@
     <title>Valentine's Day Game</title>
     <style>
         body {
+            background-color: #ffecf2;
             text-align: center;
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .background-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            z-index: -1;
         }
 
         h1 {
@@ -38,54 +58,68 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background-color: red;
+            background-color: #FFD700;
             border-radius: 50%;
             pointer-events: none;
+            animation: explode 2s ease-out infinite;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(10);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Valentine's Day Quiz</h1>
-    <p>Answer a few questions about us and receive a special message!</p>
-    <button onclick="startQuiz()">Start Quiz</button>
-    <div id="quiz" style="display: none;">
-        <h2>Question 1</h2>
-        <p>What's your favorite memory of us?</p>
-        <select id="q1">
-            <option value="">Select...</option>
-            <option value="Our first date">Our first date</option>
-            <option value="The time we went on vacation together">The time we went on vacation together</option>
-            <option value="The moment you said 'I love you'">The moment you said 'I love you'</option>
-            <option value="Other">Other</option>
-        </select>
-        <h2>Question 2</h2>
-        <p>What's something you love most about me?</p>
-        <select id="q2">
-            <option value="">Select...</option>
-            <option value="Your kindness">Your kindness</option>
-            <option value="Your sense of humor">Your sense of humor</option>
-            <option value="Your intelligence">Your intelligence</option>
-            <option value="Other">Other</option>
-        </select>
-        <h2>Question 3</h2>
-        <p>Where do you see us in the future?</p>
-        <select id="q3">
-            <option value="">Select...</option>
-            <option value="Living together happily">Living together happily</option>
-            <option value="Starting a family">Starting a family</option>
-            <option value="Growing old together">Growing old together</option>
-            <option value="Other">Other</option>
-        </select>
-        <h2>Question 4</h2>
-        <p>Will you be my Valentine?</p>
-        <select id="q4">
-            <option value="">Select...</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
-        <button onclick="showMessage()">Show Message</button>
+    <div class="container">
+        <img class="background-img" src="https://images.unsplash.com/photo-1518124803823-91ca5c5e0f07" alt="Valentine's Day Background">
+        <h1>Valentine's Day Quiz</h1>
+        <p>Answer a few questions about us and receive a special message!</p>
+        <button onclick="startQuiz()">Start Quiz</button>
+        <div id="quiz" style="display: none;">
+            <h2>Question 1</h2>
+            <p>What's your favorite memory of us?</p>
+            <select id="q1">
+                <option value="">Select...</option>
+                <option value="Our first date">Our first date</option>
+                <option value="The moment you said 'I love you'">The moment you said 'I love you'</option>
+                <option value="Other">Other</option>
+            </select>
+            <h2>Question 2</h2>
+            <p>What's something you love most about me?</p>
+            <select id="q2">
+                <option value="">Select...</option>
+                <option value="Your kindness">Your kindness</option>
+                <option value="Your sense of humor">Your sense of humor</option>
+                <option value="Your intelligence">Your intelligence</option>
+                <option value="Other">Other</option>
+            </select>
+            <h2>Question 3</h2>
+            <p>Where do you see us in the future?</p>
+            <select id="q3">
+                <option value="">Select...</option>
+                <option value="Living together happily">Living together happily</option>
+                <option value="Starting a family">Starting a family</option>
+                <option value="Growing old together">Growing old together</option>
+                <option value="Other">Other</option>
+            </select>
+            <h2>Question 4</h2>
+            <p>Will you be my Valentine?</p>
+            <select id="q4">
+                <option value="">Select...</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <button onclick="showMessage()">Show Message</button>
+        </div>
+        <p id="result"></p>
     </div>
-    <p id="result"></p>
 
     <script>
         function startQuiz() {
@@ -122,9 +156,7 @@
         }
 
         function startFireworks() {
-            const fireworksContainer = document.createElement('div');
-            fireworksContainer.classList.add('fireworks-container');
-            document.body.appendChild(fireworksContainer);
+            const fireworksContainer = document.querySelector('.container');
 
             for (let i = 0; i < 50; i++) {
                 createFirework(fireworksContainer);
