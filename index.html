@@ -1,3 +1,6 @@
+To add a heart icon at the end of the page, you can use an HTML element such as `<img>` and provide a source for the heart icon. Here's the updated code with the heart icon:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,6 +77,12 @@
                 opacity: 0;
             }
         }
+
+        .heart {
+            margin-top: 20px;
+            width: 30px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -85,16 +94,14 @@
         <div id="quiz" style="display: none;">
             <h2>Question 1</h2>
             <p>What's your favorite memory of us?</p>
-            <select id="q1">
-                <option value="">Select...</option>
+            <select id="q1" multiple>
                 <option value="Our first date">Our first date</option>
                 <option value="The moment you said 'I love you'">The moment you said 'I love you'</option>
                 <option value="Other">Other</option>
             </select>
             <h2>Question 2</h2>
             <p>What's something you love most about me?</p>
-            <select id="q2">
-                <option value="">Select...</option>
+            <select id="q2" multiple>
                 <option value="Your kindness">Your kindness</option>
                 <option value="Your sense of humor">Your sense of humor</option>
                 <option value="Your intelligence">Your intelligence</option>
@@ -102,8 +109,7 @@
             </select>
             <h2>Question 3</h2>
             <p>Where do you see us in the future?</p>
-            <select id="q3">
-                <option value="">Select...</option>
+            <select id="q3" multiple>
                 <option value="Living together happily">Living together happily</option>
                 <option value="Starting a family">Starting a family</option>
                 <option value="Growing old together">Growing old together</option>
@@ -112,13 +118,13 @@
             <h2>Question 4</h2>
             <p>Will you be my Valentine?</p>
             <select id="q4">
-                <option value="">Select...</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
             </select>
             <button onclick="showMessage()">Show Message</button>
         </div>
         <p id="result"></p>
+        <img class="heart" src="https://img.icons8.com/color/48/000000/heart.png"/>
     </div>
 
     <script>
@@ -127,53 +133,9 @@
         }
 
         function showMessage() {
-            const q1 = document.getElementById('q1').value.trim();
-            const q2 = document.getElementById('q2').value.trim();
-            const q3 = document.getElementById('q3').value.trim();
+            const q1 = getSelectedValues(document.getElementById('q1'));
+            const q2 = getSelectedValues(document.getElementById('q2'));
+            const q3 = getSelectedValues(document.getElementById('q3'));
             const q4 = document.getElementById('q4').value.trim();
 
-            if (q1 === "" || q2 === "" || q3 === "" || q4 === "") {
-                alert("Please answer all questions.");
-                return;
-            }
-
-            let message = "I am so grateful for our journey together. ";
-            message += "Your favorite memory: '" + q1 + "', ";
-            message += "the thing you love most about me: '" + q2 + "', ";
-            message += "and where you see us in the future: '" + q3 + "'. ";
-
-            if (q4.toLowerCase() === 'yes') {
-                message += "I'm overjoyed to spend forever with you. ";
-                message += "See you in Sale on 10/02/2024. ";
-                startFireworks();
-            } else {
-                message += "I can't wait to continue creating beautiful memories with you. ";
-            }
-
-            message += "Happy Valentine's Day, my love! ❤️";
-
-            document.getElementById('result').innerText = message;
-        }
-
-        function startFireworks() {
-            const fireworksContainer = document.querySelector('.container');
-
-            for (let i = 0; i < 50; i++) {
-                createFirework(fireworksContainer);
-            }
-        }
-
-        function createFirework(container) {
-            const firework = document.createElement('div');
-            firework.classList.add('firework');
-            firework.style.left = Math.random() * window.innerWidth + 'px';
-            firework.style.top = Math.random() * window.innerHeight + 'px';
-            container.appendChild(firework);
-
-            setTimeout(() => {
-                firework.remove();
-            }, 2000);
-        }
-    </script>
-</body>
-</html>
+            if (q1.length === 0 || q2.length === 0 || q
