@@ -87,7 +87,7 @@
         <img class="background-img" src="https://images.unsplash.com/photo-1518124803823-91ca5c5e0f07" alt="Valentine's Day Background">
         <h1>Valentine's Day Quiz</h1>
         <p>Answer a few questions about us and receive a special message!</p>
-        <button onclick="startQuiz()">Start Quiz</button>
+        <button onclick="toggleQuiz()">Start Quiz</button>
         <div id="quiz" style="display: none;">
             <h2>Question 1</h2>
             <p>What's your favorite memory of us?</p>
@@ -125,8 +125,9 @@
     </div>
 
     <script>
-        function startQuiz() {
-            document.getElementById('quiz').style.display = 'block';
+        function toggleQuiz() {
+            const quizSection = document.getElementById('quiz');
+            quizSection.style.display = quizSection.style.display === 'none' ? 'block' : 'none';
         }
 
         function showMessage() {
@@ -142,4 +143,51 @@
 
             let message = "I am so grateful for our journey together. ";
             message += "Your favorite memories: '" + q1.join(", ") + "', ";
-            message += "the things you
+            message += "the things you love most about me: '" + q2.join(", ") + "', ";
+            message += "and where you see us in the future: '" + q3.join(", ") + "'. ";
+
+            if (q4.toLowerCase() === 'yes') {
+                message += "I'm overjoyed to spend forever with you. ";
+                message += "See you in Sale on 10/02/2024. ";
+                startFireworks();
+            } else {
+                message += "I can't wait to continue creating beautiful memories with you. ";
+            }
+
+            message += "Happy Valentine's Day, my love! ❤️";
+
+            document.getElementById('result').innerText = message;
+        }
+
+        function getSelectedValues(select) {
+            const selectedOptions = [];
+            for (const option of select.options) {
+                if (option.selected) {
+                    selectedOptions.push(option.value);
+                }
+            }
+            return selectedOptions;
+        }
+
+        function startFireworks() {
+            const fireworksContainer = document.querySelector('.container');
+
+            for (let i = 0; i < 50; i++) {
+                createFirework(fireworksContainer);
+            }
+        }
+
+        function createFirework(container) {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            firework.style.left = Math.random() * window.innerWidth + 'px';
+            firework.style.top = Math.random() * window.innerHeight + 'px';
+            container.appendChild(firework);
+
+            setTimeout(() => {
+                firework.remove();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
